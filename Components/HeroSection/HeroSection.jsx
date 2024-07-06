@@ -27,7 +27,7 @@ const HeroSection = ({ accounts, tokenData }) => {
   return (
     <div className={Style.HeroSection}>
       <div className={Style.HeroSection_box}>
-        <div className={Style.HeroSection__box_heading}>
+        <div className={Style.HeroSection_box_heading}>
           <p>Swap</p>
           <div className={Style.HeroSection__box_heading_img}>
             <Image
