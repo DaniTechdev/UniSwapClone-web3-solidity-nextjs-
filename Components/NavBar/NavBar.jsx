@@ -23,6 +23,10 @@ const NavBar = () => {
     },
   ];
 
+  //USESTATE
+
+  const [account, setAccount] = useState(false);
+
   const [openModel, setOpenModel] = useState(false);
   const [openTokenBox, setOpenTokenBox] = useState(false);
 
@@ -66,7 +70,13 @@ const NavBar = () => {
             </div>
             <p> Network Name</p>
           </div>
-          <button onClick={() => setOpenModel(true)}>Address</button>
+          {account ? (
+            <button onClick={() => setOpenModel(true)}>Connect</button>
+          ) : (
+            <button onClick={() => setOpenTokenBox(true)}>
+              0x344vyuhdbu72786948...
+            </button>
+          )}
 
           {openModel && (
             // sending setOpenModel into Model to use it and close the Modal
