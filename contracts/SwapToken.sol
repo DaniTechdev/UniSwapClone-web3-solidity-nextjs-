@@ -24,6 +24,7 @@ contract SingleSwapToken {
 address public constant USDC = "0x97f991971a37D4Ca58064e6a98FC563F03A71E5c";
 
 
+
 function swapExactInputString(uint256 amountIn) external returns(uint256 amountOut){
 //we will transfer the token/fund to uniswap smart contract to help us spend the token on our
 //  behalf the approve them using approve fucntion from unsswap router to spend the token on our stead
@@ -50,7 +51,7 @@ function swapExacInputString(uint amountOut, uint amountInMaximum) external retu
     TransferHelper.safeTransferFrom(WETH9, msg.sender, address(this), amountInMaximum);
 
     // TransferHelper.safeApproval(WETH9, address(swapRouter), amountInMaximum);
-    TransferHelper.safeApproval(WETH9, address(this), amountInMaximum);
+    TransferHelper.safeApprove(WETH9, address(this), amountInMaximum);
 
     ISwapRouter.ExactOutputSingleParams memory params = ISwapRouter.ExactInputSingleParams({
           tokenIn: WETH9,
@@ -58,10 +59,20 @@ function swapExacInputString(uint amountOut, uint amountInMaximum) external retu
 
         fee:3000,
         recipient:msg.msg.sender,
-        amountIn:amountIn,
-        amountOutMinimum:0,
+        deadline:block.timestamp,
+        amountOut: amountOut,
+        amountInMaximum:amountInMaximum,
         sqrtPriceLimitX96:0
     })
+
+    amountIn = swapRouter.exactOutputSingle(params)
+
+    if(amountIn <amountInMaximum) {
+        TransferHelper.safeApprove(WETH9, address(swapRouter), 0)
+
+        TransferHelper.safeTransfer(WETH9, msg.sender, amountInMaximum - amountIn)
+    }
+    
 }
 
 }
