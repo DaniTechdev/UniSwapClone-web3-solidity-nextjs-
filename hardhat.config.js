@@ -20,7 +20,8 @@ module.exports = {
   networks: {
     hardhat: {
       forking: {
-        url: "https://rpc.ankr.com/eth",
+        url: "https://eth-mainnet.g.alchemy.com/v2/otFsUuSsaf38rr94Aslr2OUYKzMqHRoS",
+        //above is a forking network whose RPC endpoint was gotten from Alchemy
       },
     },
   },
