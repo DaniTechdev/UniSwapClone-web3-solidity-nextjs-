@@ -55,7 +55,7 @@ describe("SingleSwapToken", () => {
 
     //SWAP
     await singleSwapToken.swapExactInputSingle(amountIn);
-    // console.log("DAI balance", await dai.balanceOf(accounts[0].address));
+    console.log("DAI balance", await dai.balanceOf(accounts[0].address));
     // console.log(weth);
     // console.log(dai);
     // console.log(usdc);
@@ -74,6 +74,8 @@ describe("SingleSwapToken", () => {
     //SWAP
     await singleSwapToken.swapExactOutputSingle(daiAmountOut, wethAmountInMax);
     console.log(accounts[0].address);
+    console.log(accounts[1].address);
     console.log("Dai balance", await dai.balanceOf(accounts[0].address));
+    console.log("Dai balance", await dai.balanceOf(accounts[1].address));
   });
 });

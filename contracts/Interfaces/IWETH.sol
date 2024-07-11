@@ -3,7 +3,7 @@
 pragma solidity >=0.7 <0.9.0;
 
 //we will define interface fro our entire ERC token
-//The functions defined inside the IWETH are the basic functions found in ERC tokens
+//The functions defined inside the IWETH are the basic functions found in ERC tokens/contracts
 
 interface IWETH {
     function deposit() external payable;
