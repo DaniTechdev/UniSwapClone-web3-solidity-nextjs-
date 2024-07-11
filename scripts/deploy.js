@@ -5,14 +5,18 @@ async function main() {
   const BooToken = await hre.ethers.getContractFactory("BooToken");
   const booToken = await BooToken.deploy();
   await booToken.deployed();
-  console.log(`deployed to the contract address: ${booToken.address}`);
+  console.log(
+    ` BooToken deployed to the contract address: ${booToken.address}`
+  );
   // console.log(booToken);
 
   //ERC20 LifeToken TOKEN
   const LifeToken = await hre.ethers.getContractFactory("LifeToken");
   const lifeToken = await BooToken.deploy();
   await lifeToken.deployed();
-  console.log(`deployed to the contract address: ${lifeToken.address}`);
+  console.log(
+    ` LifeToken  deployed to the contract address: ${lifeToken.address}`
+  );
   // console.log(lifeToken);
 
   // SingleSwapToken contract
@@ -21,14 +25,18 @@ async function main() {
   );
   const singleSwapToken = await SingleSwapToken.deploy();
   await singleSwapToken.deployed();
-  console.log(`deployed to the contract address: ${singleSwapToken.address}`);
+  console.log(
+    `SingleSwapToken deployed to the contract address: ${singleSwapToken.address}`
+  );
   // console.log( SingleSwapToken);
 
   //  SwapMultiHop
   const SwapMultiHop = await hre.ethers.getContractFactory("SwapMultiHop");
   const swapMultiHop = await SwapMultiHop.deploy();
   await swapMultiHop.deployed();
-  console.log(`deployed to the contract address: ${swapMultiHop.address}`);
+  console.log(
+    `  SwapMultiHop deployed to the contract address: ${swapMultiHop.address}`
+  );
   // console.log(  SwapMultiHop);
 }
 
