@@ -1,4 +1,4 @@
-//SPDX-License-identifier:GPL-2.0-or-later
+//SPDX-License-Identifier:GPL-2.0-or-later
 
 pragma solidity >=0.7 <0.9.0;
 pragma abicoder v2; //This will allow one to use nested array in our smart contract
@@ -22,7 +22,7 @@ contract SingleSwapToken {
     address public constant WETH9 = 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2;
     address public constant USDC = 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48;
 
-    function swapExactInputString(
+    function swapExactInputSingle(
         uint256 amountIn
     ) external returns (uint256 amountOut) {
         //we will transfer the token/fund to uniswap smart contract to help us spend the token on our
@@ -52,10 +52,10 @@ contract SingleSwapToken {
     }
 
     //let's write a function for fixed amount of output swap
-    function swapExacInputString(
-        uint amountOut,
-        uint amountInMaximum
-    ) external returns (uint amountIn) {
+    function swapExactOutputSingle(
+        uint256 amountOut,
+        uint256 amountInMaximum
+    ) external returns (uint256 amountIn) {
         TransferHelper.safeTransferFrom(
             WETH9,
             msg.sender,
@@ -64,7 +64,7 @@ contract SingleSwapToken {
         );
 
         // TransferHelper.safeApproval(WETH9, address(swapRouter), amountInMaximum);
-        TransferHelper.safeApprove(WETH9, address(this), amountInMaximum);
+        TransferHelper.safeApprove(WETH9, address(swapRouter), amountInMaximum);
 
         ISwapRouter.ExactOutputSingleParams memory params = ISwapRouter
             .ExactOutputSingleParams({
