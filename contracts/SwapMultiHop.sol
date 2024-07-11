@@ -34,7 +34,7 @@ contract SwapMultiHop {
 
         ISwapRouter.ExactInputParams memory params = ISwapRouter
             .ExactInputParams({
-                path: abi.encodedPacked(
+                path: abi.encodePacked(
                     WETH9,
                     uint24(3000),
                     USDC,
@@ -65,11 +65,11 @@ contract SwapMultiHop {
 
         ISwapRouter.ExactOutputParams memory params = ISwapRouter
             .ExactOutputParams({
-                path: abi.encodedPacked(
+                path: abi.encodePacked(
                     DAI,
                     uint24(100),
                     USDC,
-                    uint(3000),
+                    uint24(3000),
                     WETH9
                 ),
                 recipient: msg.sender,
