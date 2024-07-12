@@ -12,8 +12,15 @@ import { Model, TokenList } from "../index";
 import { SwapTokenContext } from "../../Context/SwapContext";
 
 const NavBar = () => {
-  const { account, weth9, dai, networkConnect, ether } =
-    useContext(SwapTokenContext);
+  const {
+    connectWallet,
+    account,
+    weth9,
+    dai,
+    networkConnect,
+    ether,
+    tokenData,
+  } = useContext(SwapTokenContext);
   const menuItems = [
     {
       name: "Swap",
@@ -73,23 +80,25 @@ const NavBar = () => {
             <div className={Style.Navbar_box_right_box_img}>
               <Image src={images.ether} alt="Network" height={30} width={30} />
             </div>
-            <p> Network Name</p>
+            <p> {networkConnect}</p>
           </div>
           {account ? (
-            <button onClick={() => setOpenModel(true)}>Connect</button>
+            <button onClick={() => setOpenTokenBox(true)}>
+              {account.slice(0, 20)}...
+            </button>
           ) : (
-            <button onClick={() => setOpenTokenBox(true)}>{account}</button>
+            <button onClick={() => setOpenModel(true)}>Connect</button>
           )}
 
           {openModel && (
             // sending setOpenModel into Model to use it and close the Modal
-            <Model setOpenModel={setOpenModel} connectWallet="Connect" />
+            <Model setOpenModel={setOpenModel} connectWallet={connectWallet} />
           )}
         </div>
       </div>
       {/* TOKENLIST COMPONENT */}
       {openTokenBox && (
-        <TokenList tokenData="Hey" setOpenTokenBox={setOpenTokenBox} />
+        <TokenList tokenData={tokenData} setOpenTokenBox={setOpenTokenBox} />
       )}
     </div>
   );
