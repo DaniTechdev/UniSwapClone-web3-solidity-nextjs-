@@ -6,6 +6,12 @@ pragma solidity >=0.7 <0.9.0;
 //The functions defined inside the IWETH are the basic functions found in ERC tokens/contracts
 
 interface IWETH {
+    function name() external view returns (string memory);
+
+    function symbol() external view returns (string memory);
+
+    function decimals() external view returns (uint8);
+
     function deposit() external payable;
 
     function withdraw(uint) external;

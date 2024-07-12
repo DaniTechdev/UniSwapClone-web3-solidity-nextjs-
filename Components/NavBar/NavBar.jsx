@@ -7,6 +7,10 @@ import Style from "./NavBar.module.css";
 import images from "../../assets";
 import { Model, TokenList } from "../index";
 
+//CONTEXT
+
+import {SwapTo}
+
 const NavBar = () => {
   const menuItems = [
     {

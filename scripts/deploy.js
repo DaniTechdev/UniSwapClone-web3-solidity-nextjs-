@@ -12,7 +12,7 @@ async function main() {
 
   //ERC20 LifeToken TOKEN
   const LifeToken = await hre.ethers.getContractFactory("LifeToken");
-  const lifeToken = await BooToken.deploy();
+  const lifeToken = await LifeToken.deploy();
   await lifeToken.deployed();
   console.log(
     ` LifeToken  deployed to the contract address: ${lifeToken.address}`

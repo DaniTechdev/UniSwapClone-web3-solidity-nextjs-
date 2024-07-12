@@ -1,24 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { ethers, BigNumber } from "ethers";
 import Web3Modal from "web3modal";
-
-//INTERNAL IMPORT
 import {
   checkIfWalletConnected,
-  connectWallet,
-  connectingWithBooToken,
-  connectingWithLifeToken,
-  connectingWithSingleSwapContract,
   connectingWithIWETHToken,
-  connectingWithDAIToken,
 } from "../Utils/apiFeatures";
-
 import { IWETHABI } from "./constants";
-// import ERC20Data from "./IWETH.json";
-
-export const SwapTokenContext = React.createContext();
+import { SwapTokenContext } from "./SwapContext";
 
 export const SwapTokenContextProvider = ({ children }) => {
+  const swap = "Welcome to swap my Token";
+
   //USESTATE
   const [account, setAccount] = useState("");
   const [ether, setEther] = useState("");
@@ -37,7 +29,6 @@ export const SwapTokenContextProvider = ({ children }) => {
   //FETCH DATA
   //When a user come to our application we have to display some
   //information about the user, therefore we have to fetch data\
-
   const fetchingData = async () => {
     try {
       //GET USER ACCOUNT
@@ -58,21 +49,14 @@ export const SwapTokenContextProvider = ({ children }) => {
       const ethValue = ethers.utils.formatEther(converBal);
       // console.log("converTed balance", converBal);
       // console.log("ethValue in readble format", ethValue);
-
       setEther(ethValue);
 
-      //GET NEWTWORK (networkname)
-      const network = await provider.getNetwork();
-      setNetworkConnect(network.name);
-      console.log(network.name, network);
-
-      //ALL TOKENS BALANCE
+      //ALL TOKEN BALANCE
       addToken.map(async (el, i) => {
         //GETTING CONTRACT
         const contract = new ethers.Contract(el, IWETHABI, provider);
 
         //GETTING BALANCE
-
         const userBalance = await contract.balanceOf(userAccount);
         const tokenLeft = BigNumber.from(userBalance).toString();
         const convertTokenBal = ethers.utils.formatEther(tokenLeft);
@@ -89,22 +73,11 @@ export const SwapTokenContextProvider = ({ children }) => {
 
         console.log("tokenData", tokenData);
 
-        //WETH9 BALANCE
-        const weth = await connectingWithIWETHToken();
-        // console.log("WETH", weth);
-        const wethBal = await weth.balanceOf(userAccount);
-        const wethTokenLeft = BigNumber.from(wethBal).toString();
-        const convertwethTokenBal = ethers.utils.formatEther(wethTokenLeft);
-        setWeth9(convertwethTokenBal);
-
         //DAI BALANCE
-        const daiContract = await connectingWithDAIToken();
-        const daiBal = await daiContract.balanceOf(userAccount);
-        const daiTokenLeft = BigNumber.from(daiBal).toString();
-        const convertdaiTokenBal = ethers.utils.formatEther(daiTokenLeft);
-        setDai(convertdaiTokenBal);
-
-        console.log("dai", "weth9", dai, weth9);
+        // const dai = await connectingWithDAIToken();
+        // console.log("DAI", dai);
+        const weth = await connectingWithIWETHToken();
+        console.log("WETH", weth);
       });
     } catch (error) {
       console.log(error);
@@ -115,9 +88,7 @@ export const SwapTokenContextProvider = ({ children }) => {
     fetchingData();
   }, []);
   return (
-    <SwapTokenContext.Provider
-      value={{ account, weth9, dai, networkConnect, ether }}
-    >
+    <SwapTokenContext.Provider value={{ swap }}>
       {children}
     </SwapTokenContext.Provider>
   );
