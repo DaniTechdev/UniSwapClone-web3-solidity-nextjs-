@@ -3,9 +3,24 @@ import { ethers, BigNumber } from "ethers";
 import Web3Modal from "web3modal";
 
 //INTERNAL IMPORT
-import {} from "../Utils/apiFeatures";
-const SwapContext = () => {
-  return <div>SwapContext</div>;
-};
+import {
+  checkIfWalletConnected,
+  connectWallet,
+  connectingWithBooToken,
+  connectingWithLifeToken,
+  connectingWithSingleSwapContract,
+  connectingWithIWETHToken,
+  connectingWithDAIToken,
+} from "../Utils/apiFeatures";
 
-export default SwapContext;
+import { IWETHABI } from "./constants";
+import ERC20 from "./ERC20.json";
+
+export const SwapTokenContext = React.createContext();
+
+export const SwapTokenContextProvider = ({ children }) => {
+  const swap = "Welcome to swap my Token";
+  return (
+    <SwapTokenContext.Provider value={{}}>{children}</SwapTokenContext.Provider>
+  );
+};
