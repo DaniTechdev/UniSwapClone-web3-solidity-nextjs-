@@ -18,7 +18,7 @@ export const SingleSwapTokenABI = singleSwapToken.abi;
 export const swapMultiHopAddress = "0xf524930660f75CF602e909C15528d58459AB2A56";
 export const SwapMultiHopABI = swapMultiHop.abi;
 
-export const IWETHAddresss = "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2";
+export const IWETHAddress = "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2";
 export const IWETHABI = IWETH.abi;
 // BooToken deployed to the contract address: 0xA3b48c7b901fede641B596A4C10a4630052449A6
 // LifeToken  deployed to the contract address: 0xa138575a030a2F4977D19Cc900781E7BE3fD2bc0
