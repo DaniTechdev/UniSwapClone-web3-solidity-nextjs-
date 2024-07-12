@@ -49,7 +49,12 @@ export const connectWallet = async () => {
 //BOO TOKEN FETCHING
 export const fetchBooContract = (signerOrProvider) =>
   new ethers.Contract(BooTokenAddress, BooTokenABI, signerOrProvider);
+
+//LIFE TOKEN FETCHING
+export const fetchLifeContract = (signerOrProvider) =>
+  new ethers.Contract(BooTokenAddress, BooTokenABI, signerOrProvider);
 //CONNECTING WITH BOO TOKEN CONTRACT
+
 export const connectingWithBooToken = async () => {
   try {
     const web3modal = new Web3Modal();
@@ -57,6 +62,44 @@ export const connectingWithBooToken = async () => {
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
     const contract = fetchBooContract(signer);
+
+    return contract;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//LIFE TOKEN FETCHING
+export const LifeContract = (signerOrProvider) =>
+  new ethers.Contract(LifeTokenAddress, LifeTokenABI, signerOrProvider);
+//CONNECTING WITH BOO TOKEN CONTRACT
+export const connectingWithLifeToken = async () => {
+  try {
+    const web3modal = new Web3Modal();
+    const connection = await web3modal.connect();
+    const provider = new ethers.providers.Web3Provider(connection);
+    const signer = provider.getSigner();
+    const contract = fetchLifeContract(signer);
+
+    return contract;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//LIFE TOKEN FETCHING
+export const LifeContract = (signerOrProvider) =>
+  new ethers.Contract(LifeTokenAddress, LifeTokenABI, signerOrProvider);
+//CONNECTING WITH BOO TOKEN CONTRACT
+export const connectingWithLifeToken = async () => {
+  try {
+    const web3modal = new Web3Modal();
+    const connection = await web3modal.connect();
+    const provider = new ethers.providers.Web3Provider(connection);
+    const signer = provider.getSigner();
+    const contract = fetchLifeContract(signer);
+
+    return contract;
   } catch (error) {
     console.log(error);
   }
