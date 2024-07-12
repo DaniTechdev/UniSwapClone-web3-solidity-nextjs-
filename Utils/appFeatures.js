@@ -66,7 +66,6 @@ export const connectingWithBooToken = async () => {
 };
 
 //FETCHING CONTRACT====================
-
 //LIFE TOKEN FETCHING-----------
 export const fetchLifeContract = (signerOrProvider) =>
   new ethers.Contract(LifeTokenAddress, LifeTokenABI, signerOrProvider);
