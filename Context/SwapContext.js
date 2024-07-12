@@ -114,6 +114,19 @@ export const SwapTokenContextProvider = ({ children }) => {
   useEffect(() => {
     fetchingData();
   }, []);
+
+  //SINGLE SWAP TOKEN
+  const singleSwapToken = async () => {
+    try {
+      let singleSwapToken;
+      let weth;
+      let dai;
+
+      singleSwapToken = await connectingWithSingleSwapContract();
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <SwapTokenContext.Provider
       value={{
