@@ -9,9 +9,11 @@ import { Model, TokenList } from "../index";
 
 //CONTEXT
 
-import {SwapTo}
+import { SwapTokenContext } from "../../Context/SwapContext";
 
 const NavBar = () => {
+  const { account, weth9, dai, networkConnect, ether } =
+    useContext(SwapTokenContext);
   const menuItems = [
     {
       name: "Swap",
@@ -29,8 +31,7 @@ const NavBar = () => {
 
   //USESTATE
 
-  const [account, setAccount] = useState(false);
-
+  // const [account, setAccount] = useState(false);
   const [openModel, setOpenModel] = useState(false);
   const [openTokenBox, setOpenTokenBox] = useState(false);
 
@@ -77,9 +78,7 @@ const NavBar = () => {
           {account ? (
             <button onClick={() => setOpenModel(true)}>Connect</button>
           ) : (
-            <button onClick={() => setOpenTokenBox(true)}>
-              0x344vyuhdbu72786948...
-            </button>
+            <button onClick={() => setOpenTokenBox(true)}>{account}</button>
           )}
 
           {openModel && (
