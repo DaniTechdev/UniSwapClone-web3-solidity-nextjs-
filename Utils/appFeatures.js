@@ -19,5 +19,11 @@ import {
 export const checkIfWalletConnected = async () => {
   try {
     if (!window.ethereum) return console.log("Install MetaMast");
+    const accounts = await window.ethereum.request({
+      method: "eth_accounts",
+    });
+
+    const firstAccount = accounts[0];
+    return firstAccount;
   } catch (error) {}
 };
