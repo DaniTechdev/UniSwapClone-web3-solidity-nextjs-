@@ -88,16 +88,20 @@ export const connectingWithLifeToken = async () => {
 };
 
 //LIFE TOKEN FETCHING
-export const LifeContract = (signerOrProvider) =>
-  new ethers.Contract(LifeTokenAddress, LifeTokenABI, signerOrProvider);
+export const fetchingSingleSwapContract = (signerOrProvider) =>
+  new ethers.Contract(
+    SingleSwapTokenAddress,
+    SingleSwapTokenABI,
+    signerOrProvider
+  );
 //CONNECTING WITH BOO TOKEN CONTRACT
-export const connectingWithLifeToken = async () => {
+export const connectingWithSingleSwapContract = async () => {
   try {
     const web3modal = new Web3Modal();
     const connection = await web3modal.connect();
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
-    const contract = fetchLifeContract(signer);
+    const contract = fetchingSingleSwapContract(signer);
 
     return contract;
   } catch (error) {
