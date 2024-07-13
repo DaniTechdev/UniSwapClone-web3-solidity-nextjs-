@@ -5,12 +5,18 @@ import { Token, SearchToken } from "../index";
 import Style from "./HeroSection.module.css";
 import images from "../../assets";
 
-const HeroSection = ({ accounts, tokenData }) => {
+//context
+import { SwapTokenContext } from "../../Context/SwapContext";
+// import { connectWallet } from "../../Utils/apiFeatures";
+
+const HeroSection = ({ tokenData }) => {
   //UseState
   const [openSetting, setOpenSetting] = useState(false);
   const [openToken, setopenToken] = useState(false);
   const [openTokensTwo, setOpenTokensTwo] = useState(false);
 
+  const { singleSwapToken, connectWallet, account } =
+    useContext(SwapTokenContext);
   //TOKEN 1
   const [tokenOne, settokenOne] = useState({
     name: "",
@@ -67,11 +73,19 @@ const HeroSection = ({ accounts, tokenData }) => {
           </button>
         </div>
 
-        {accounts ? (
-          <button className={Style.HeroSection_box_btn}>Connect Wallet</button>
-        ) : (
-          <button className={Style.HeroSection_box_btn} onClick={() => {}}>
+        {account ? (
+          <button
+            className={Style.HeroSection_box_btn}
+            onClick={() => singleSwapToken()}
+          >
             Swap
+          </button>
+        ) : (
+          <button
+            onClick={connectWallet()}
+            className={Style.HeroSection_box_btn}
+          >
+            Connect Wallet
           </button>
         )}
       </div>

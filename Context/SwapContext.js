@@ -65,7 +65,7 @@ export const SwapTokenContextProvider = ({ children }) => {
       //GET NEWTWORK (networkname)
       const network = await provider.getNetwork();
       setNetworkConnect(network.name);
-      console.log(network.name, network);
+      // console.log(network.name, network);
 
       //ALL TOKENS BALANCE
       addToken.map(async (el, i) => {
@@ -137,15 +137,15 @@ export const SwapTokenContextProvider = ({ children }) => {
 
       //let's do the swap
       await singleSwapToken.swapExactInputSingle(amountIn, {
-        gaslimit: 300000,
+        gasLimit: 300000,
       });
-
+      // const daiContract = await connectingWithDAIToken();
       const balance = await dai.balanceOf(account);
       const transferAmount = BigNumber.from(balance).toString();
       const ethValue = ethers.utils.formatEther(transferAmount);
       setDai(ethValue);
 
-      console.log("dai balance", dai);
+      console.log("dai balance", ethValue);
     } catch (error) {
       console.log(error);
     }
