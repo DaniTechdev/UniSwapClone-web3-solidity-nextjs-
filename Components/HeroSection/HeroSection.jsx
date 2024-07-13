@@ -15,7 +15,7 @@ const HeroSection = ({ tokenData }) => {
   const [openToken, setopenToken] = useState(false);
   const [openTokensTwo, setOpenTokensTwo] = useState(false);
 
-  const { singleSwapToken, connectWallet, account } =
+  const { singleSwapToken, connectWallet, account, ether, dai } =
     useContext(SwapTokenContext);
   //TOKEN 1
   const [tokenOne, settokenOne] = useState({
@@ -56,7 +56,7 @@ const HeroSection = ({ tokenData }) => {
               alt="ether"
             />
             {tokenOne.name || "ETH"}
-            <small>9474</small>
+            <small>{ether.slice(0, 7)}</small>
           </button>
         </div>
         <div className={Style.HeroSection_box_input}>
@@ -69,7 +69,7 @@ const HeroSection = ({ tokenData }) => {
               alt="ether"
             />
             {tokenTwo.name || "ETH"}
-            <small>9474</small>
+            <small>{dai.slice(0, 7)}</small>
           </button>
         </div>
 
