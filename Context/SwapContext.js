@@ -14,6 +14,7 @@ import {
 } from "../Utils/apiFeatures";
 
 import { IWETHABI } from "./constants";
+import { log } from "@uniswap/smart-order-router";
 // import ERC20Data from "./IWETH.json";
 
 export const SwapTokenContext = React.createContext();
@@ -87,7 +88,7 @@ export const SwapTokenContextProvider = ({ children }) => {
           tokenBalance: convertTokenBal,
         });
 
-        console.log("tokenData", tokenData);
+        // console.log("tokenData", tokenData);
 
         //WETH9 BALANCE
         const weth = await connectingWithIWETHToken();
@@ -104,7 +105,7 @@ export const SwapTokenContextProvider = ({ children }) => {
         const convertdaiTokenBal = ethers.utils.formatEther(daiTokenLeft);
         setDai(convertdaiTokenBal);
 
-        console.log("dai", "weth9", dai, weth9);
+        // console.log("dai", "weth9", dai, weth9);
       });
     } catch (error) {
       console.log(error);
@@ -123,13 +124,40 @@ export const SwapTokenContextProvider = ({ children }) => {
       let dai;
 
       singleSwapToken = await connectingWithSingleSwapContract();
+      // console.log("singleSwapToken", singleSwapToken);
+      weth = await connectingWithIWETHToken();
+      dai = await connectingWithDAIToken();
+
+      // console.log("weth", weth);
+      // console.log("dai", dai);
+      //let's deposit into weth to send to uniswap router, approve it and convert to dai
+      const amountIn = 10n ** 18n;
+      await weth.deposit({ value: amountIn });
+      await weth.approve(singleSwapToken.address, amountIn);
+
+      //let's do the swap
+      await singleSwapToken.swapExactInputSingle(amountIn, {
+        gaslimit: 300000,
+      });
+
+      const balance = await dai.balanceOf(account);
+      const transferAmount = BigNumber.from(balance).toString();
+      const ethValue = ethers.utils.formatEther(transferAmount);
+      setDai(ethValue);
+
+      console.log("dai balance", dai);
     } catch (error) {
       console.log(error);
     }
   };
+
+  // useEffect(() => {
+  //   singleSwapToken();
+  // }, []);
   return (
     <SwapTokenContext.Provider
       value={{
+        singleSwapToken,
         connectWallet,
         account,
         weth9,
