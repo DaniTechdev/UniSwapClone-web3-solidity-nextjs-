@@ -195,6 +195,39 @@ contract LiquidityExamples is IERC721Receiver {
     console.log("Liquidity", liquidity);
     console.log("amount0", amount0);
     console.log("amount1", amount1);
-
    } 
+
+   //function to know or get the amount of liquidity one has provided in the liquidity pool
+   function getLiquidity(uint _tokenId) external view returns(uint128){
+     (
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    ,
+    uint128 liquidity,
+    ,
+    ,
+    ,
+   ) = nonfungiblePositionManager.position(_tokenId);
+
+   return liquidity; 
+   }
+
+      //function to decrease current liquidity
+   function decreaseLiquidity(uint128 liquidity ) external returns (uint amount0,uint amount1 ) {
+    INonfungiblePositionManager.DecreaseLiquidityParams memory params = INonfungiblePositionManager.DecreaseLiquidityParams({
+        tokenId:tokenId,
+        liquidity:liquidity,
+        amount0Min:0,
+        amount1Min:0,
+        deadline:block.timestamp
+    });
+
+    (amount0, amount1) = nonfungiblePositionManager.decreaseLiquidity(params);
+    console.log("amount 0", amount0);
+    console.log("amount 1", amount1);
+   }
 }
