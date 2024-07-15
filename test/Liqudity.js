@@ -60,4 +60,27 @@ describe("LiquidityExamples", () => {
     await dai.connect(daiWhale).transfer(accounts[0].address, daiAmount);
     await usdc.connect(usdcWhale).transfer(accounts[0].address, usdcAmount);
   });
+
+  // it("mintNewPosition", async () => {
+  //   const daiAmount = 100n * 10n ** 18n;
+  //   const usdcAmount = 100n * 10n ** 6n;
+
+  //   await dai
+  //     .connect(accounts[0])
+  //     .transfer(liquidityExamples.address, daiAmount);
+  //   await usdc
+  //     .connect(accounts[0])
+  //     .transfer(liquidityExamples.address, usdcAmount);
+
+  //   await liquidityExamples.mintNewPosition();
+
+  //   console.log(
+  //     "dai balance after adding liquidity",
+  //     await dai.balanceOf(accounts[0].address)
+  //   );
+  //   console.log(
+  //     "usdc balance after adding liquidity",
+  //     await usdc.balanceOf(accounts[0].address)
+  //   );
+  // });
 });
