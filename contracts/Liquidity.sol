@@ -45,7 +45,7 @@ contract LiquidityExamples is IERC721Receiver {
         address,
         uint _tokenId,
         bytes calldata
-    ) external override returns (byte4) {
+    ) external override returns (bytes4) {
         _createDeposit(operator, _tokenId);
         return this.onERC721Received.selector;
     }
