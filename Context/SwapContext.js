@@ -31,8 +31,10 @@ export const SwapTokenContextProvider = ({ children }) => {
 
   const addToken = [
     // "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2", //WETH9 token mainnetoken
-    "0x49AeF2C4005Bf572665b09014A563B5b9E46Df21", //Boo token
-    "0xa9efDEf197130B945462163a0B852019BA529a66", //Life Token
+    // "0x49AeF2C4005Bf572665b09014A563B5b9E46Df21", //Boo token
+    "0x06786bCbc114bbfa670E30A1AC35dFd1310Be82f", //Boo token
+    // "0xa9efDEf197130B945462163a0B852019BA529a66", //Life Token
+    "0x72F853E9E202600c5017B5A060168603c3ed7368", //Life Token
   ];
 
   //FETCH DATA
@@ -92,10 +94,13 @@ export const SwapTokenContextProvider = ({ children }) => {
 
         //WETH9 BALANCE
         const weth = await connectingWithIWETHToken();
-        // console.log("WETH", weth);
+        console.log("WETH", weth);
         const wethBal = await weth.balanceOf(userAccount);
+        console.log("wethBal", wethBal);
         const wethTokenLeft = BigNumber.from(wethBal).toString();
         const convertwethTokenBal = ethers.utils.formatEther(wethTokenLeft);
+
+        console.log("convertwethTokenBal", convertwethTokenBal);
         setWeth9(convertwethTokenBal);
 
         //DAI BALANCE
@@ -105,7 +110,7 @@ export const SwapTokenContextProvider = ({ children }) => {
         const convertdaiTokenBal = ethers.utils.formatEther(daiTokenLeft);
         setDai(convertdaiTokenBal);
 
-        // console.log("dai", "weth9", dai, weth9);
+        console.log("dai", "weth9", dai, weth9);
       });
     } catch (error) {
       console.log(error);
@@ -128,11 +133,13 @@ export const SwapTokenContextProvider = ({ children }) => {
       weth = await connectingWithIWETHToken();
       dai = await connectingWithDAIToken();
 
-      // console.log("weth", weth);
-      // console.log("dai", dai);
+      console.log("weth", weth);
+      console.log("dai", dai);
       //let's deposit into weth to send to uniswap router, approve it and convert to dai
-      const amountIn = 10n ** 18n;
+      // const amountIn = 10n ** 18n;
+      const amountIn = ethers.utils.parseEther("10.0");
       await weth.deposit({ value: amountIn });
+
       await weth.approve(singleSwapToken.address, amountIn);
 
       //let's do the swap
@@ -141,6 +148,7 @@ export const SwapTokenContextProvider = ({ children }) => {
       });
       // const daiContract = await connectingWithDAIToken();
       const balance = await dai.balanceOf(account);
+      console.log("balance of dai", balance);
       const transferAmount = BigNumber.from(balance).toString();
       const ethValue = ethers.utils.formatEther(transferAmount);
       setDai(ethValue);
