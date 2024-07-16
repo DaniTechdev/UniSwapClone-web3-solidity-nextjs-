@@ -89,8 +89,8 @@ contract LiquidityExamples is IERC721Receiver {
     {
         //for this example we will provide equal amounts of liquidity to both assets
         //providing liquidity in both assests means liquidity will be earning fees and is in-range
-        uint amount0ToMint = 100 * 1e18;
-        uint amount1ToMint = 100 * 1e6;
+        uint amount0ToMint = 1e18;
+        uint amount1ToMint = 1e6;
         //Approve the position mananger
         TransferHelper.safeApprove(
             DAI,
