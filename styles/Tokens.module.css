@@ -2,6 +2,11 @@
     margin-block: 5rem;
 
 }
+.Tokens_box{
+    width: 60%;
+    margin: 0 auto;
+}
+
 
 .Tokens_box h2{
     font-size: 2rem;
@@ -22,18 +27,19 @@
     font-weight: 700;
     background: color #1e1e1e; 
     padding: 0rem 2rem;
+    line-height: 0;
     border-radius: .5rem;
     color:#cff808 ;
     border: 1px solid #d1f80b53;
 
 }
 
-.Token_box_search{
+.Tokens_box_search{
     display: flex;
     align-items: center;
     gap: 1rem;
     background-color: #1e1e1e;
-    padding: 2rem 2rem;
+    padding: 0.2rem 2rem;
     line-height: 0;
     border-radius: .5rem;
     width: 50%;
@@ -51,9 +57,16 @@
 
 
 @media only screen and (max-width:35em) {
+
+  
     .Tokens_box{
+    
         width: 90%;
         margin: 0 auto;
+    }
+
+    .Tokens_box_header{
+        display: grid;
     }
 
     .Tokens_box_search{
