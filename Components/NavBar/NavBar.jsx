@@ -55,10 +55,7 @@ const NavBar = () => {
 
           <div className={Style.Navbar_box_left_menu}>
             {menuItems.map((el, i) => (
-              <Link
-                key={i + 1}
-                href={{ pathname: `${el.name}`, query: `${el.link}` }}
-              >
+              <Link key={i + 1} href={{ pathname: `${el.name}` }}>
                 <p className={Style.Navbar_box_left_menu_item}>{el.name}</p>
               </Link>
             ))}
