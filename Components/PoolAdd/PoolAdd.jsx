@@ -46,7 +46,57 @@ const PoolAdd = () => {
           <div className={Style.PoolAdd_box_header}>
             <Image src={images.arrowLeft} alt="image" width={30} height={30} />
           </div>
-          <div className={Style.PoolAdd_box_header_middle}></div>
+          <div className={Style.PoolAdd_box_header_middle}>
+            <p>Add Liquidity</p>
+          </div>
+          <div className={Style.PoolAdd_box_header_right}>
+            <p>Clear All</p>
+            <Image
+              src={images.close}
+              alt="image"
+              width={50}
+              height={50}
+              onClick={() => setOpenModel(true)}
+            />
+          </div>
+        </div>
+
+        {/* {SSELECT PRICE RANGE} */}
+        <div className={Style.PoolAdd_box_price}>
+          {/* {LEFT} */}
+          <div className={Style.PoolAdd_box_price_left}>
+            <h4>Select Pair</h4>
+            <div className={Style.PoolAdd_box_price_left_token}>
+              <div className={Style.PoolAdd_box_price_left_token_input}>
+                <p>
+                  <Image
+                    src={images.etherlogo}
+                    alt="image"
+                    width={20}
+                    height={20}
+                  />
+                </p>
+                <p>UNI</p>
+                <p>?</p>
+              </div>
+              <div
+                className={Style.PoolAdd_box_price_left_token_info}
+                onClick={() => setOpenTokenModel(true)}
+              >
+                <p>
+                  <Image
+                    src={images.etherlogo}
+                    alt="image"
+                    width={20}
+                    height={20}
+                  />
+                </p>
+                <p>WETH</p>
+                <p>?</p>
+              </div>
+              {/* {} */}
+            </div>
+          </div>
         </div>
       </div>
     </div>
