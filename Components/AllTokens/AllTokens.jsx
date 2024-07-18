@@ -34,12 +34,12 @@ const AllTokens = ({ allTokenList }) => {
           </p>
         </div>
 
-        {allTokenList.map((elc, i) => (
+        {allTokenList.map((el, i) => (
           <div className={Style.AllTokens_box_list}>
             <p className={Style.hide}>{el.number}</p>
             <p className={Style.AllTokens_box_list_para}>
               <small>
-                <Image src={el.images} alt="logo" width={25} height={25} />
+                <Image src={el.image} alt="logo" width={25} height={25} />
               </small>
               <small>{el.name}</small>
               <small>{el.symbol}</small>
