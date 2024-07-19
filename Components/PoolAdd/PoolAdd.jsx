@@ -4,6 +4,7 @@ import Image from "next/image";
 //INTERNAL IMPORT
 import images from "../../assets";
 import Style from "./PoolAdd.module.css";
+import { Token, SearchToken } from "../../Components/index";
 
 const PoolAdd = () => {
   const [openModel, setOpenModel] = useState(false);
@@ -35,10 +36,17 @@ const PoolAdd = () => {
     if (text == "+") {
       setMinPrice(minPrice + 1);
     } else if (text == "-") {
-      setMaxPrice(maxPrice - 1);
+      setMinPrice(minPrice - 1);
     }
   };
 
+  const maxPriceRange = (text) => {
+    if (text == "+") {
+      setMaxPrice(maxPrice + 1);
+    } else if (text == "-") {
+      setMaxPrice(maxPrice - 1);
+    }
+  };
   return (
     <div className={Style.PoolAdd}>
       <div className={Style.PoolAdd_box}>
@@ -67,7 +75,7 @@ const PoolAdd = () => {
           <div className={Style.PoolAdd_box_price_left}>
             <h4>Select Pair</h4>
             <div className={Style.PoolAdd_box_price_left_token}>
-              <div className={Style.PoolAdd_box_price_left_token_input}>
+              <div className={Style.PoolAdd_box_price_left_token_info}>
                 <p>
                   <Image
                     src={images.etherlogo}
@@ -173,69 +181,64 @@ const PoolAdd = () => {
                 </div>
               </div>
             </div>
-            {/* {RIGHT} */}
+          </div>
+          {/* {RIGHT} */}
 
-            <div className={Style.PoolAdd_box_price_right}>
-              <h4>Set Price Range</h4>
-              <div className={Style.PoolAdd_box_price_right_box}>
-                <p className={Style.PoolAdd_box_price_right_box_para}>
-                  Current Price: 41.1494 TestV4 per WETH
+          <div className={Style.PoolAdd_box_price_right}>
+            <h4>Set Price Range</h4>
+            <div className={Style.PoolAdd_box_price_right_box}>
+              <p className={Style.PoolAdd_box_price_right_box_para}>
+                Current Price: 41.1494 TestV4 per WETH
+              </p>
+              <Image src={images.wallet} alt="wallet" height={80} width={80} />
+              <h3>Your position will appear here.</h3>
+            </div>
+
+            {/* {Price Range} */}
+            <div className={Style.PoolAdd_box_price_right_range}>
+              <div className={Style.PoolAdd_box_price_right_range_box}>
+                <p>Min Price</p>
+                <p
+                  className={Style.PoolAdd_box_price_right_range_box}
+                  onClick={(e) => mintPriceRange(e.target.innerText)}
+                >
+                  <small>-</small> {minPrice} <small>+</small>
                 </p>
-                <Image
-                  src={images.wallet}
-                  alt="wallet"
-                  height={80}
-                  width={80}
-                />
-                <h3>Your position will appear here.</h3>
+                <p>Testv4 per WETH</p>
               </div>
+              {/* {MAX} */}
+              <div className={Style.PoolAdd_box_price_right_range_box}>
+                <p>Max Price</p>
+                <p
+                  className={Style.PooAdd_box_price_right_range_box_para}
+                  onClick={(e) => maxPriceRange(e.target.innerText)}
+                >
+                  <small>-</small> {maxPrice} <small>+</small>
+                </p>
+                <p>Testv4 per WETH</p>
+              </div>
+            </div>
 
-              {/* {Price Range} */}
-              <div className={Style.PoolAdd_box_price_right_range}>
-                <div className={Style.PoolAdd_box_price_right_range_box}>
-                  <p>Min Price</p>
-                  <p
-                    className={Style.PoolAdd_box_price_right_range_box}
-                    onClick={(e) => mintPriceRange(e.target.innerText)}
-                  >
-                    <small>-</small> {minPrice} <small>+</small>
-                  </p>
-                  <p>Testv4 per WETH</p>
-                </div>
-                {/* {MAX} */}
-                <div className={Style.PoolAdd_box_price_right_range_box}>
-                  <p>Max Price</p>
-                  <p
-                    className={Style.PooAdd_box_price_right_range_box_para}
-                    onClick={(e) => maxPriceRange(e.target.innerText)}
-                  >
-                    <small>-</small> {maxPrice} <small>+</small>
-                  </p>
-                  <p>Testv4 per WETH</p>
-                </div>
-              </div>
-
-              {/* {Button} */}
-              <div className={Style.PoolAdd_box_price_right_button}>
-                <button>Full Range</button>
-              </div>
-              <div className={Style.PoolAdd_box_price_right_amount}>
-                <button>Enter an amount</button>
-              </div>
+            {/* {Button} */}
+            <div className={Style.PoolAdd_box_price_right_button}>
+              <button>Full Range</button>
+            </div>
+            <div className={Style.PoolAdd_box_price_right_amount}>
+              <button>Enter an amount</button>
             </div>
           </div>
         </div>
-        {openModel && (
-          <div className={Style.token}>
-            <Token setOpenSetting={setOpenModel} />
-          </div>
-        )}
-        {openTokenModel && (
-          <div className={Style.token}>
-            <SearchToken tokenData="Hey" openToken={setOpenTokenModel} />
-          </div>
-        )}
       </div>
+      {openModel && (
+        <div className={Style.token}>
+          <Token setOpenSetting={setOpenModel} />
+        </div>
+      )}
+      {openTokenModel && (
+        <div className={Style.token}>
+          <SearchToken tokenData="Hey" openToken={setOpenTokenModel} />
+        </div>
+      )}
     </div>
   );
 };
