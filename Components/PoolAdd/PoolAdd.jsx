@@ -43,7 +43,7 @@ const PoolAdd = () => {
     <div className={Style.PoolAdd}>
       <div className={Style.PoolAdd_box}>
         <div className={Style.PoolAdd_box_header}>
-          <div className={Style.PoolAdd_box_header}>
+          <div className={Style.PoolAdd_box_header_left}>
             <Image src={images.arrowLeft} alt="image" width={30} height={30} />
           </div>
           <div className={Style.PoolAdd_box_header_middle}>
@@ -61,7 +61,7 @@ const PoolAdd = () => {
           </div>
         </div>
 
-        {/* {SSELECT PRICE RANGE} */}
+        {/* {SELECT PRICE RANGE} */}
         <div className={Style.PoolAdd_box_price}>
           {/* {LEFT} */}
           <div className={Style.PoolAdd_box_price_left}>
@@ -94,10 +94,147 @@ const PoolAdd = () => {
                 <p>WETH</p>
                 <p>?</p>
               </div>
-              {/* {} */}
+              {/* {FEE} */}
+              <div className={Style.PoolAdd_box_price_left_fee}>
+                <div className={Style.PoolAdd_box_price_left_fee_left}>
+                  <h4>Fee teir</h4>
+                  <p>The % you will earn in fees</p>
+                </div>
+                {openFee ? (
+                  <button onClick={() => setOpenFee(false)}> Hide</button>
+                ) : (
+                  <button onClick={() => setOpenFee(true)}>Show</button>
+                )}
+              </div>
+
+              {/* {FEE LIST} */}
+              {openFee && (
+                <div className={Style.PoolAdd_box_price_left_list}>
+                  {feePairs.map((el, i) => (
+                    <div
+                      className={Style.PoolAdd_box_price_left_list_item}
+                      key={i + 1}
+                      onClick={() => setActive(i + 1)}
+                    >
+                      <div className={Style.PoolAdd_box_price_left_list_item}>
+                        <p>{el.fee}</p>
+                        <p>
+                          {active == i + 1 ? (
+                            <Image
+                              src={images.tick}
+                              alt="image"
+                              width={20}
+                              height={20}
+                            />
+                          ) : (
+                            ""
+                          )}
+                        </p>
+                      </div>
+
+                      <small>{el.info}</small>
+                      <p
+                        className={Style.PoolAdd_box_price_left_list_item_para}
+                      >
+                        {el.number}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* {DEPOSIT AMOUNT} */}
+
+              <div className={Style.PoolAdd_box_deposit}>
+                <h4>Deposit Amount</h4>
+
+                <div className={Style.PoolAdd_box_deposit_box}>
+                  <input type="text" placeholder="0" />
+                  <div className={Style.PoolAdd_box_deposit_box_input}>
+                    <p>
+                      <small>UNI</small> Uniswap
+                    </p>
+                    <p className={Style.PoolAdd_box_deposit_box_input_item}>
+                      Balance: 0.00
+                    </p>
+                  </div>
+                </div>
+
+                <div className={Style.PoolAdd_box_deposit_box}>
+                  <input type="text" placeholder="0" />
+                  <div className={Style.PoolAdd_box_deposit_box_input}>
+                    <p>
+                      <small>ETH</small>Ether
+                    </p>
+                    <p className={Style.PoolAdd_box_deposit_box_input_item}>
+                      Balance: 0.00
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* {RIGHT} */}
+
+            <div className={Style.PoolAdd_box_price_right}>
+              <h4>Set Price Range</h4>
+              <div className={Style.PoolAdd_box_price_right_box}>
+                <p className={Style.PoolAdd_box_price_right_box_para}>
+                  Current Price: 41.1494 TestV4 per WETH
+                </p>
+                <Image
+                  src={images.wallet}
+                  alt="wallet"
+                  height={80}
+                  width={80}
+                />
+                <h3>Your position will appear here.</h3>
+              </div>
+
+              {/* {Price Range} */}
+              <div className={Style.PoolAdd_box_price_right_range}>
+                <div className={Style.PoolAdd_box_price_right_range_box}>
+                  <p>Min Price</p>
+                  <p
+                    className={Style.PoolAdd_box_price_right_range_box}
+                    onClick={(e) => mintPriceRange(e.target.innerText)}
+                  >
+                    <small>-</small> {minPrice} <small>+</small>
+                  </p>
+                  <p>Testv4 per WETH</p>
+                </div>
+                {/* {MAX} */}
+                <div className={Style.PoolAdd_box_price_right_range_box}>
+                  <p>Max Price</p>
+                  <p
+                    className={Style.PooAdd_box_price_right_range_box_para}
+                    onClick={(e) => maxPriceRange(e.target.innerText)}
+                  >
+                    <small>-</small> {maxPrice} <small>+</small>
+                  </p>
+                  <p>Testv4 per WETH</p>
+                </div>
+              </div>
+
+              {/* {Button} */}
+              <div className={Style.PoolAdd_box_price_right_button}>
+                <button>Full Range</button>
+              </div>
+              <div className={Style.PoolAdd_box_price_right_amount}>
+                <button>Enter an amount</button>
+              </div>
             </div>
           </div>
         </div>
+        {openModel && (
+          <div className={Style.token}>
+            <Token setOpenSetting={setOpenModel} />
+          </div>
+        )}
+        {openTokenModel && (
+          <div className={Style.token}>
+            <SearchToken tokenData="Hey" openToken={setOpenTokenModel} />
+          </div>
+        )}
       </div>
     </div>
   );
