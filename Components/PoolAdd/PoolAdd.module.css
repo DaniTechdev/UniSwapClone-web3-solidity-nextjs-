@@ -12,6 +12,13 @@
     color:#cff80b;
 }
 
+.PoolAdd_box_header_right{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: #cff80b;
+}
+
 .PoolAdd_box_price{
     display: grid;
     grid-template-columns: repeat(2,1fr);
