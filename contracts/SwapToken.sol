@@ -18,11 +18,13 @@ contract SingleSwapToken {
     //note the swap router contract is deployed in the smart contract provided in the instance of the uniswap router above
 
     //we will start with swapping WETH to DAI as hardhat already has given usse some amount of Ether
-    address public constant DAI = 0x6B175474E89094C44Da98b954EedeAC495271d0F;
-    address public constant WETH9 = 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2;
-    address public constant USDC = 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48;
+    // address public constant DAI = 0x6B175474E89094C44Da98b954EedeAC495271d0F;
+    // address public constant WETH9 = 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2;
+    // address public constant USDC = 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48;
 
     function swapExactInputSingle(
+        address token1,
+        address token2,
         uint256 amountIn
     ) external returns (uint256 amountOut) {
         //we will transfer the token/fund to uniswap smart contract to help us spend the token on our
