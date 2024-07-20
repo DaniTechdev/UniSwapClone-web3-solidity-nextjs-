@@ -17,8 +17,8 @@ contract SingleSwapToken {
 
     //note the swap router contract is deployed in the smart contract provided in the instance of the uniswap router above
 
-    //we will start with swapping WETH to DAI as hardhat already has given usse some amount of Ether
-    // address public constant DAI = 0x6B175474E89094C44Da98b954EedeAC495271d0F;
+    //we will start with swapping WETH to token2 as hardhat already has given usse some amount of Ether
+    // address public constant token2 = 0x6B175474E89094C44Da98b954EedeAC495271d0F;
     // address public constant WETH9 = 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2;
     // address public constant USDC = 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48;
 
@@ -30,18 +30,18 @@ contract SingleSwapToken {
         //we will transfer the token/fund to uniswap smart contract to help us spend the token on our
         //  behalf the approve them using approve fucntion from unsswap router to spend the token on our stead
         TransferHelper.safeTransferFrom(
-            WETH9,
+            token1,
             msg.sender,
             address(this),
             amountIn
         );
 
-        TransferHelper.safeApprove(WETH9, address(swapRouter), amountIn);
+        TransferHelper.safeApprove(token1, address(swapRouter), amountIn);
 
         ISwapRouter.ExactInputSingleParams memory params = ISwapRouter
             .ExactInputSingleParams({
-                tokenIn: WETH9,
-                tokenOut: DAI,
+                tokenIn: token1,
+                tokenOut: token2,
                 fee: 3000,
                 recipient: msg.sender,
                 deadline: block.timestamp,
@@ -55,23 +55,29 @@ contract SingleSwapToken {
 
     //let's write a function for fixed amount of output swap
     function swapExactOutputSingle(
+        address token1,
+        address token2,
         uint256 amountOut,
         uint256 amountInMaximum
     ) external returns (uint256 amountIn) {
         TransferHelper.safeTransferFrom(
-            WETH9,
+            token1,
             msg.sender,
             address(this),
             amountInMaximum
         );
 
-        // TransferHelper.safeApproval(WETH9, address(swapRouter), amountInMaximum);
-        TransferHelper.safeApprove(WETH9, address(swapRouter), amountInMaximum);
+        // TransferHelper.safeApproval(token1, address(swapRouter), amountInMaximum);
+        TransferHelper.safeApprove(
+            token1,
+            address(swapRouter),
+            amountInMaximum
+        );
 
         ISwapRouter.ExactOutputSingleParams memory params = ISwapRouter
             .ExactOutputSingleParams({
-                tokenIn: WETH9,
-                tokenOut: DAI,
+                tokenIn: token1,
+                tokenOut: token2,
                 fee: 3000,
                 recipient: msg.sender,
                 deadline: block.timestamp,
@@ -83,10 +89,10 @@ contract SingleSwapToken {
         amountIn = swapRouter.exactOutputSingle(params);
 
         if (amountIn < amountInMaximum) {
-            TransferHelper.safeApprove(WETH9, address(swapRouter), 0);
+            TransferHelper.safeApprove(token1, address(swapRouter), 0);
 
             TransferHelper.safeTransfer(
-                WETH9,
+                token1,
                 msg.sender,
                 amountInMaximum - amountIn
             );
