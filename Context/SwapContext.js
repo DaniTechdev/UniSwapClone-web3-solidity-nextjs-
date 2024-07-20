@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ethers, BigNumber } from "ethers";
 import Web3Modal from "web3modal";
+import { Token, CurrencyAmount, TradeType, Percent } from "@uniswap/sdk-core";
 
 //INTERNAL IMPORT
 import {
@@ -14,8 +15,11 @@ import {
 } from "../Utils/apiFeatures";
 
 import { IWETHABI } from "./constants";
-import { log } from "@uniswap/smart-order-router";
+// import { log } from "@uniswap/smart-order-router";
 // import ERC20Data from "./IWETH.json";
+
+import { getPrice } from "../Utils/fetchingPrice";
+import { swapUpdatedPrice } from "../Utils/swapUpdatePrice";
 
 export const SwapTokenContext = React.createContext();
 
