@@ -1,4 +1,4 @@
-import { AlphaRouter, CurrencyAmount } from "@uniswap/smart-order-router";
+import { AlphaRouter } from "@uniswap/smart-order-router";
 import { ethers, BigNumber } from "ethers";
 import { Token, CurrencyAmount, TradeType, Percent } from "@uniswap/sdk-core";
 

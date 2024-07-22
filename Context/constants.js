@@ -17,7 +17,7 @@ export const LifeTokenABI = lifeToken.abi;
 // export const SingleSwapTokenAddress =
 //   "0x06786bCbc114bbfa670E30A1AC35dFd1310Be82f";
 export const SingleSwapTokenAddress =
-  "0x82Bd83ec6D4bCC8EaB6F6cF7565efE1e41D92Ce5";
+  " 0x82Bd83ec6D4bCC8EaB6F6cF7565efE1e41D92Ce5";
 export const SingleSwapTokenABI = singleSwapToken.abi;
 //SWAPMULTIHOP
 // export const swapMultiHopAddress = "0x72F853E9E202600c5017B5A060168603c3ed7368";
