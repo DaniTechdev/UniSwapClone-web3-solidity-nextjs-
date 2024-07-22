@@ -209,6 +209,8 @@ export const SwapTokenContextProvider = ({ children }) => {
       value={{
         singleSwapToken,
         connectWallet,
+        getPrice,
+        swapUpdatedPrice,
         account,
         weth9,
         dai,
