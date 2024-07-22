@@ -9,40 +9,40 @@ const SearchToken = ({ openToken, tokens, tokenData }) => {
   //USESSSTATE
   const [active, setActive] = useState(1);
 
-  const coin = [
-    {
-      img: images.ether,
-      name: "ETH",
-    },
-    {
-      img: images.ether,
-      name: "DAI",
-    },
-    {
-      img: images.ether,
-      name: "DOG",
-    },
-    {
-      img: images.ether,
-      name: "FUN",
-    },
-    {
-      img: images.ether,
-      name: "KAI",
-    },
-    {
-      img: images.ether,
-      name: "UNI",
-    },
-    {
-      img: images.ether,
-      name: "TIME",
-    },
-    {
-      img: images.ether,
-      name: "TRIAS",
-    },
-  ];
+  // const coin = [
+  //   {
+  //     img: images.ether,
+  //     name: "ETH",
+  //   },
+  //   {
+  //     img: images.ether,
+  //     name: "DAI",
+  //   },
+  //   {
+  //     img: images.ether,
+  //     name: "DOG",
+  //   },
+  //   {
+  //     img: images.ether,
+  //     name: "FUN",
+  //   },
+  //   {
+  //     img: images.ether,
+  //     name: "KAI",
+  //   },
+  //   {
+  //     img: images.ether,
+  //     name: "UNI",
+  //   },
+  //   {
+  //     img: images.ether,
+  //     name: "TIME",
+  //   },
+  //   {
+  //     img: images.ether,
+  //     name: "TRIAS",
+  //   },
+  // ];
 
   return (
     <div className={Style.SearchToken}>
@@ -66,12 +66,19 @@ const SearchToken = ({ openToken, tokens, tokenData }) => {
         </div>
 
         <div className={Style.SearchToken_box_tokens}>
-          {coin.map((el, i) => (
+          {tokenData.map((el, i) => (
             <span
               key={i + 1}
               className={active == i + 1 ? `${Style.active}` : ""}
               onClick={() => (
-                setActive(i + 1), tokens({ name: el.name, image: el.img })
+                setActive(i + 1),
+                tokens({
+                  name: el.name,
+                  image: el.img,
+                  symbol: el.symbol,
+                  tokenBalance: el.tokenBalance,
+                  tokenAddress: el.tokenAddress,
+                })
               )}
             >
               <Image
@@ -80,7 +87,7 @@ const SearchToken = ({ openToken, tokens, tokenData }) => {
                 width={30}
                 height={30}
               />
-              {el.name}
+              {el.symbol}
             </span>
           ))}
         </div>
