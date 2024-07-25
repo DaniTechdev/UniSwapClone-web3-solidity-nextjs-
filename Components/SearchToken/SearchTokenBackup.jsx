@@ -8,7 +8,8 @@ import images from "../../assets";
 const SearchToken = ({ openToken, tokens, tokenData }) => {
   //USESSSTATE
   const [active, setActive] = useState(1);
-  // console.log("tokenData from smartContract on searchTokenpage", tokenData);
+
+  console.log("tokenData from smartContract", tokenData);
 
   // const coin = [
   //   {

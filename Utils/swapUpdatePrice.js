@@ -28,6 +28,7 @@ const address1 = "0x6B175474E89094C44Da98b954EedeAC495271d0F";
 const WETH = new Token(chainId, address0, decimals0, symbol0, name0);
 const DAI = new Token(chainId, address1, decimals1, symbol1, name1);
 
+//SWAPUPDATEDPRICE FUNCTION
 export const swapUpdatedPrice = async (
   inputAmount,
   slippageAmount,
@@ -36,12 +37,12 @@ export const swapUpdatedPrice = async (
 ) => {
   const percentSlippage = new Percent(slippageAmount, 100); //this will help to convert to percentage
   const wei = ethers.utils.parseUnits(inputAmount.toString(), decimals0);
-  const CurrencyAmount = CurrencyAmount.fromRawAmount(
+  const currencyAmount = CurrencyAmount.fromRawAmount(
     WETH,
     BigNumber.from(wei)
   );
 
-  const route = await router.route(CurrencyAmount, DAI, TradeType.EXACT_INPUT, {
+  const route = await router.route(currencyAmount, DAI, TradeType.EXACT_INPUT, {
     recipient: walletAddress,
     slippageTolerance: percentSlippage,
     deadline: deadline,

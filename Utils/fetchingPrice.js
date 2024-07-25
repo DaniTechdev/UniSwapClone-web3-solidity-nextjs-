@@ -37,7 +37,7 @@ export const getPrice = async (inputAmount, poolAddress) => {
   const tokenAddrss0 = await poolContract.token0();
   const tokenAddrss1 = await poolContract.token1();
 
-  console.log(tokenAddrss0, tokenAddrss1);
+  console.log("tokenAddrss0, tokenAddrss1", tokenAddrss0, tokenAddrss1);
 
   const tokenAbi0 = await getAbi(tokenAddrss0);
   const tokenAbi1 = await getAbi(tokenAddrss1);
@@ -69,5 +69,5 @@ export const getPrice = async (inputAmount, poolAddress) => {
 
   const amountOut = ethers.utils.formatUnits(quoteAmountOut, tokenDecimals1);
 
-  return [amountOut, tokenSymbol0, tokenSymbol0];
+  return [amountOut, tokenSymbol0, tokenSymbol1];
 };

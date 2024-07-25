@@ -31,8 +31,6 @@ const HeroSection = ({}) => {
     swapUpdatedPrice,
   } = useContext(SwapTokenContext);
   //TOKEN 1
-
-  // console.log("tokenData HeroSection", tokenData);
   const [tokenOne, settokenOne] = useState({
     name: "",
     image: "",
@@ -49,13 +47,10 @@ const HeroSection = ({}) => {
     tokenAddress: "",
   });
 
-  // console.log("tokenOne from Hero section", tokenOne);
-  // console.log("tokenTwo from Hero section", tokenTwo);
-
   //function for the price update
   const callOutPut = async (value) => {
     // const yourAccount = " 0x97f991971a37D4Ca58064e6a98FC563F03A71E5c";
-    const yourAccount = "0x6B175474E89094C44Da98b954EedeAC495271d0F";
+    const yourAccount = "0xc82780Db1257C788F262FBbDA960B3706Dfdcaf2";
     const deadline = 10;
     const slippageAmount = 25;
 
@@ -66,7 +61,6 @@ const HeroSection = ({}) => {
       yourAccount
     );
 
-    console.log(data);
     setTokenSwapOutPut(data[1]);
     //We will display our loader
     setSearch(false);
@@ -106,8 +100,13 @@ const HeroSection = ({}) => {
             )}
           />
           <button onClick={() => setopenToken(true)}>
-            <Image src={images.etherlogo} width={20} height={20} alt="ether" />
-            {tokenOne.name || "ETH"}
+            <Image
+              src={tokenOne.image || images.etherlogo}
+              width={20}
+              height={20}
+              alt="ether"
+            />
+            {tokenOne.symbol || "ETH"}
             <small>{tokenOne.tokenBalance.slice(0, 7)}</small>
           </button>
         </div>
@@ -146,7 +145,13 @@ const HeroSection = ({}) => {
         {account ? (
           <button
             className={Style.HeroSection_box_btn}
-            onClick={() => singleSwapToken(tokenOne, tokenTwo, swapAmount)}
+            onClick={() =>
+              singleSwapToken({
+                tokenOne: tokenOne,
+                tokenTwo: tokenTwo,
+                swapAmount,
+              })
+            }
           >
             Swap
           </button>
