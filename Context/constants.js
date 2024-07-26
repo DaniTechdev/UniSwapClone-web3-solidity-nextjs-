@@ -17,7 +17,7 @@ import IWETH from "./IWETH.json";
 // export const SingleSwapTokenAddress =
 //   "0x06786bCbc114bbfa670E30A1AC35dFd1310Be82f";
 export const SingleSwapTokenAddress =
-  "0xa138575a030a2F4977D19Cc900781E7BE3fD2bc0";
+  "0xf524930660f75CF602e909C15528d58459AB2A56";
 // export const SingleSwapTokenAddress =
 //   " 0x82Bd83ec6D4bCC8EaB6F6cF7565efE1e41D92Ce5";
 export const SingleSwapTokenABI = singleSwapToken.abi;

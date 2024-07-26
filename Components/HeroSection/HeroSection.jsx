@@ -55,7 +55,8 @@ const HeroSection = ({}) => {
   //function for the price update
   const callOutPut = async (value) => {
     // const yourAccount = " 0x97f991971a37D4Ca58064e6a98FC563F03A71E5c";
-    const yourAccount = "0x6B175474E89094C44Da98b954EedeAC495271d0F";
+    // const yourAccount = "0x6B175474E89094C44Da98b954EedeAC495271d0F";
+    const yourAccount = "0x5294b5421E64ff729af56feE5C5799FF3E7397A8";
     const deadline = 10;
     const slippageAmount = 25;
 
@@ -152,7 +153,7 @@ const HeroSection = ({}) => {
           </button>
         ) : (
           <button
-            onClick={connectWallet()}
+            onClick={() => connectWallet()}
             className={Style.HeroSection_box_btn}
           >
             Connect Wallet

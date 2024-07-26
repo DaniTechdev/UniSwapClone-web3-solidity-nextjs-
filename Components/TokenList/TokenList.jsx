@@ -25,7 +25,7 @@ const TokenList = ({ tokenData, setOpenTokenBox }) => {
         <h2>Your Token List</h2>
       </div>
       {tokenData.map((el, i) => (
-        <div className={Style.TokenList_box}>
+        <div className={Style.TokenList_box} key={i + 1}>
           <div className={Style.TokenList_box_info}>
             <p className={Style.TokenList_box_info_symbol}>{el.symbol}</p>
             <p>
